@@ -9,6 +9,7 @@ const menuItems = [
     {title: "Accueil", icon: "far fa-house", link: "/"},
     {title: "Rejoindre", icon: "fas fa-arrow-right-to-bracket", link: "/join"},
     {title: "Matériel", icon: "fas fa-tower-cell", link: "/equipment"},
+    {title: "Carte", icon: "fas fa-map", link: "/carte"},
     {title: "Discord", icon: "fab fa-discord", link: discordLink, target: "_blank"}
 ];
 const currentRouteIndex = menuItems.findIndex(i => i.link === Astro.url.pathname);
