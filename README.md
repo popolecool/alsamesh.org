@@ -9,7 +9,7 @@ You can join our Discord using this link :
 
 ## Development commands
 ```sh
-git clone PROJECT
+git clone https://github.com/fabienengels/alsamesh.org
 cd alsamesh.org
 
 bun install
