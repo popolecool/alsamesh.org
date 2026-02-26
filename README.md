@@ -1,6 +1,6 @@
 # alsamesh.org
 
-![screenshot](readme-image.png)
+![screenshot](readme-image.webp)
 
 ## Description
 This static website page aims at promoting Meshtastic community in Alsace.
@@ -9,7 +9,7 @@ You can join our Discord using this link :
 
 ## Development commands
 ```sh
-git clone PROJECT
+git clone https://github.com/fabienengels/alsamesh.org
 cd alsamesh.org
 
 bun install
