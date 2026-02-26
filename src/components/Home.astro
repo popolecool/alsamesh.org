@@ -231,6 +231,11 @@ const images: { file: any; title: string }[] = shuffle([
                 ))}
             </div>
         </div>
+        <div class="mt-4 flex justify-center" aria-hidden="true">
+            <div class="h-1.5 w-28 overflow-hidden rounded-full bg-white/15 sm:w-36">
+                <div data-gallery-progress-bar class="h-full w-0 rounded-full bg-white/80"></div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -300,6 +305,7 @@ const images: { file: any; title: string }[] = shuffle([
     const galleryTrack = document.querySelector('[data-gallery-track]');
     const galleryPrevButton = document.querySelector('[data-gallery-prev]');
     const galleryNextButton = document.querySelector('[data-gallery-next]');
+    const galleryProgressBar = document.querySelector('[data-gallery-progress-bar]');
     const galleryDialog = document.getElementById('galleryDialog');
     const galleryDialogImage = document.getElementById('galleryDialogImage');
     const galleryDialogCaption = document.getElementById('galleryDialogCaption');
@@ -309,8 +315,48 @@ const images: { file: any; title: string }[] = shuffle([
     const resumeDelayMs = 7000;
     let autoScrollTimer: ReturnType<typeof window.setInterval> | undefined;
     let autoScrollResumeTimer: ReturnType<typeof window.setTimeout> | undefined;
+    let progressAnimationFrame: number | undefined;
+    let progressCycleStart = 0;
+    let isAutoScrollActive = false;
+
+    const setProgress = (elapsedMs: number) => {
+        if (!galleryProgressBar || !(galleryProgressBar instanceof HTMLElement)) return;
+        const percent = Math.max(0, Math.min(100, (elapsedMs / autoScrollIntervalMs) * 100));
+        galleryProgressBar.style.width = `${percent}%`;
+    };
+
+    const resetProgress = () => {
+        progressCycleStart = performance.now();
+        setProgress(0);
+    };
+
+    const stopProgressAnimation = () => {
+        if (!progressAnimationFrame) return;
+        window.cancelAnimationFrame(progressAnimationFrame);
+        progressAnimationFrame = undefined;
+    };
+
+    const startProgressAnimation = () => {
+        stopProgressAnimation();
+        const animate = (now: number) => {
+            if (!isAutoScrollActive) return;
+            const elapsed = now - progressCycleStart;
+            setProgress(elapsed);
+            progressAnimationFrame = window.requestAnimationFrame(animate);
+        };
+        progressAnimationFrame = window.requestAnimationFrame(animate);
+    };
+
+    const restartProgressCycle = () => {
+        resetProgress();
+        if (isAutoScrollActive) {
+            startProgressAnimation();
+        }
+    };
 
     const stopAutoScroll = () => {
+        isAutoScrollActive = false;
+        stopProgressAnimation();
         if (!autoScrollTimer) return;
         clearInterval(autoScrollTimer);
         autoScrollTimer = undefined;
@@ -319,6 +365,8 @@ const images: { file: any; title: string }[] = shuffle([
     const startAutoScroll = () => {
         if (!galleryTrack || !(galleryTrack instanceof HTMLElement)) return;
         stopAutoScroll();
+        isAutoScrollActive = true;
+        restartProgressCycle();
 
         autoScrollTimer = window.setInterval(() => {
             const maxScrollLeft = galleryTrack.scrollWidth - galleryTrack.clientWidth;
@@ -326,10 +374,12 @@ const images: { file: any; title: string }[] = shuffle([
 
             if (galleryTrack.scrollLeft >= maxScrollLeft - tolerance) {
                 galleryTrack.scrollTo({left: 0, behavior: 'smooth'});
+                restartProgressCycle();
                 return;
             }
 
             scrollGallery(1);
+            restartProgressCycle();
         }, autoScrollIntervalMs);
     };
 
