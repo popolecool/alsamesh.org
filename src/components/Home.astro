@@ -56,100 +56,132 @@ const images: { file: any; title: string }[] = shuffle([
 ---
 
 <section id="hero"
-         class="font-main w-full h-auto mt-32 flex items-center justify-center gap-10 max-xl:flex-col max-xl:h-auto max-xl:py-12 relative">
-    <div class="w-[90%] max-w-[984px]">
+         class="font-main relative mt-3 flex w-full justify-center px-4 sm:mt-4 sm:px-6 lg:mt-6">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-neutral-900/20 via-transparent to-transparent"></div>
+    <div class="relative w-full max-w-6xl overflow-hidden rounded-3xl border border-neutral-800/80 bg-neutral-900/55 px-6 py-10 shadow-2xl shadow-black/20 backdrop-blur-sm sm:px-10 lg:py-14">
+        <div class="pointer-events-none absolute -top-20 -left-16 h-56 w-56 rounded-full bg-emerald-500/10 blur-3xl"></div>
+        <div class="pointer-events-none absolute -right-20 top-0 h-64 w-64 rounded-full bg-indigo-500/10 blur-3xl"></div>
 
-        <div class="flex flex-col items-center gap-3 mb-8 text-center">
-            <h1 class="mb-4 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-none text-white">
-                AlsaMesh</h1>
-            <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight leading-none text-white">La
-                communauté Meshtastic d'Alsace</h2>
-            <p class="text-lg font-normal text-gray-400">
-                Ensemble, créons un maillage de communication libre et résilient à travers l'Alsace.
-            </p>
+        <div class="grid items-center gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+                <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-sm text-emerald-300">
+                    <i class="fas fa-signal" aria-hidden="true"></i>
+                    Réseau mesh communautaire en Alsace
+                </div>
+
+                <div class="mb-8 flex flex-col gap-4">
+                    <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">AlsaMesh</h1>
+                    <h2 class="text-2xl font-extrabold tracking-tight text-neutral-100 sm:text-3xl lg:text-4xl">La communauté Meshtastic d'Alsace</h2>
+                    <p class="max-w-2xl text-base text-neutral-300 sm:text-lg">
+                        Ensemble, créons un maillage de communication libre, local et résilient à travers toute l'Alsace.
+                    </p>
+                </div>
+
+                <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <a href="https://discord.gg/aRYWN5HwFU"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center gap-2 rounded-xl border border-indigo-500/40 bg-indigo-500/20 px-5 py-3 font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-indigo-500/30">
+                        <i class="fab fa-discord" aria-hidden="true"></i>
+                        Rejoindre le Discord
+                    </a>
+                    <a href="/equipment"
+                       class="inline-flex items-center justify-center gap-2 rounded-xl border border-neutral-700 bg-neutral-800/70 px-5 py-3 font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-700">
+                        Voir le matériel
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-3">
+                    <div class="rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3">
+                        <p class="text-xs uppercase tracking-wide text-neutral-400">Portée</p>
+                        <p class="text-sm font-semibold text-white">Longue distance LoRa</p>
+                    </div>
+                    <div class="rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3">
+                        <p class="text-xs uppercase tracking-wide text-neutral-400">Communauté</p>
+                        <p class="text-sm font-semibold text-white">Ouverte et locale</p>
+                    </div>
+                    <div class="rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-3">
+                        <p class="text-xs uppercase tracking-wide text-neutral-400">Objectif</p>
+                        <p class="text-sm font-semibold text-white">Réseau résilient</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative hidden min-h-[430px] items-center justify-end lg:flex">
+                <div class="pointer-events-none absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-emerald-500/8 via-transparent to-indigo-500/10 blur-2xl"></div>
+                <div class="relative w-full max-w-sm translate-x-3 opacity-95">
+                    <AlsaceShape/>
+                </div>
+            </div>
         </div>
-
-
-        <div class="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-            <a href="https://discord.gg/aRYWN5HwFU"
-               target="_blank"
-               class="flex justify-center items-center gap-2 py-3 px-5 text-white rounded-lg hover:bg-indigo-800 transition">
-                <i class="fab fa-discord"></i>
-                Notre Discord
-            </a>
-            <a href="/equipment"
-               class="flex justify-center items-center gap-2 py-3 px-5 text-white rounded-lg border border-neutral-700 hover:bg-neutral-800 transition">
-                Notre matériel
-                <i class="fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-
-    <div class="max-xl:hidden absolute top-0 right-9 z-[-1] mt-[-150px] w-1/3 max-w-lg">
-        <AlsaceShape/>
     </div>
 </section>
 
 <section id="objectifs"
-         class="font-main w-full h-auto flex items-center justify-center gap-10 max-xl:flex-col max-xl:h-auto py-12">
-    <div class="w-[90%] max-w-[984px] text-white flex flex-col items-center justify-center font-normal">
+         class="font-main flex w-full justify-center px-4 py-16 sm:px-6">
+    <div class="w-full max-w-6xl text-white">
 
-        <h3 class="text-3xl mb-12 font-extrabold">Nos objectifs</h3>
-        <ul class="space-y-4 list-none pl-0">
-            <li class="flex items-center gap-3 bg-neutral-800/50 p-4 rounded-lg hover:bg-neutral-800 transition-all">
+        <h3 class="mb-10 text-center text-3xl font-extrabold">Nos objectifs</h3>
+        <ul class="grid list-none gap-4 pl-0 md:grid-cols-2">
+            <li class="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-900/70 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-800">
                 <i class="fas fa-network-wired text-emerald-500"></i>
                 <span>Déployer un réseau mesh robuste couvrant l'ensemble du territoire alsacien.</span>
             </li>
-            <li class="flex items-center gap-3 bg-neutral-800/50 p-4 rounded-lg hover:bg-neutral-800 transition-all">
+            <li class="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-900/70 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-800">
                 <i class="fas fa-users text-emerald-500"></i>
                 <span>Fédérer une communauté active et dynamique autour du projet mesh.</span>
             </li>
-            <li class="flex items-center gap-3 bg-neutral-800/50 p-4 rounded-lg hover:bg-neutral-800 transition-all">
+            <li class="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-900/70 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-800">
                 <i class="fas fa-map-pin text-emerald-500"></i>
                 <span>Identifier et développer des points stratégiques pour optimiser la couverture du réseau en Alsace.</span>
             </li>
-            <li class="flex items-center gap-3 bg-neutral-800/50 p-4 rounded-lg hover:bg-neutral-800 transition-all">
+            <li class="flex items-start gap-3 rounded-xl border border-neutral-800 bg-neutral-900/70 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-800">
                 <i class="fas fa-signal text-emerald-500"></i>
                 <span>Privilégier la fréquence 868MHz tout en restant ouvert avec au 433MHz.</span>
             </li>
         </ul>
 
 
-        <h3 class="text-3xl text-center mt-24 font-extrabold">Vous découvrez Meshtastic ?</h3>
-        <div class="mt-8 flex flex-col items-center text-center">
-            <p class="text-lg mb-6">Meshtastic est un projet open-source permettant de créer des réseaux de
-                communication sans fil longue portée et résilients. Les appareils fonctionnent de manière autonome et
-                peuvent former un maillage pour étendre la portée du réseau.</p>
-            <p class="text-base mb-8">Découvrez toutes les informations sur le projet, la documentation et les
-                ressources
-                sur le site officiel :</p>
-            <a class="cursor-pointer hover:opacity-90 transition-opacity" href="https://meshtastic.org/"
-               target="_blank">
-                <Image src={meshtastic_logo} alt="Logo Meshtastic"
-                       class="h-[60px] w-auto p-3 rounded-xl custom-shadow bg-gray-50" decoding="async" loading="lazy"
-                       width="300" height="100"/>
-            </a>
-            <p class="text-sm text-gray-400 mt-4 mb-12">meshtastic.org</p>
+        <div class="mt-16 grid gap-6 rounded-2xl border border-neutral-800 bg-neutral-900/70 p-6 lg:grid-cols-[1.2fr_0.8fr] lg:p-8">
+            <div>
+                <h3 class="text-3xl font-extrabold">Vous découvrez Meshtastic ?</h3>
+                <p class="mt-5 text-lg text-neutral-200">Meshtastic est un projet open-source permettant de créer des réseaux de
+                    communication sans fil longue portée et résilients. Les appareils fonctionnent de manière autonome et
+                    peuvent former un maillage pour étendre la portée du réseau.</p>
+                <p class="mt-4 text-base text-neutral-400">Découvrez toutes les informations sur le projet, la documentation et les
+                    ressources sur le site officiel.</p>
+            </div>
+
+            <div class="flex flex-col items-center justify-center rounded-xl border border-neutral-800 bg-neutral-950/70 p-6 text-center">
+                <a class="cursor-pointer transition-opacity hover:opacity-90" href="https://meshtastic.org/"
+                   target="_blank" rel="noopener noreferrer">
+                    <Image src={meshtastic_logo} alt="Logo Meshtastic"
+                           class="h-[60px] w-auto rounded-xl bg-gray-50 p-3" decoding="async" loading="lazy"
+                           width="300" height="100"/>
+                </a>
+                <p class="mt-4 text-sm text-neutral-400">meshtastic.org</p>
+            </div>
         </div>
 
-        <h3 class="text-3xl mt-12 font-extrabold">Configuration du node</h3>
-        <div class="mt-8 p-8 bg-neutral-900 rounded-xl">
+        <h3 class="mt-14 text-3xl font-extrabold">Configuration du node</h3>
+        <div class="mt-6 rounded-2xl border border-neutral-800 bg-neutral-900/80 p-6 sm:p-8">
             <div class="flex flex-col gap-3">
 
-                <div class="grid grid-cols-2 gap-2 items-center">
+                <div class="grid items-center gap-3 sm:grid-cols-2">
                     <label class="font-medium text-white">Channel Name:</label>
-                    <div class="text-gray-400 py-2 px-4 bg-neutral-800 rounded">
+                    <div class="rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-2 text-gray-300">
                         LongFast
                     </div>
 
                     <label class="font-medium text-white">Pre-Shared Key (PSK):</label>
-                    <div class="text-gray-400 py-2 px-4 bg-neutral-800 rounded">
+                    <div class="rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-2 text-gray-300">
                         AQ==
                     </div>
                 </div>
 
                 <button id="configToggleBtn"
-                        class="flex items-center gap-2 py-2 px-4 text-white rounded bg-neutral-800 hover:bg-neutral-700 transition cursor-pointer">
+                        class="mt-2 inline-flex w-fit items-center gap-2 rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-2 text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-neutral-700 cursor-pointer">
                     <i class="fas fa-qrcode"></i>
                     Afficher le QR-Code de configuration
                 </button>
@@ -158,24 +190,84 @@ const images: { file: any; title: string }[] = shuffle([
     </div>
 </section>
 
-<section class="flex flex-col items-center justify-center">
-    <h3 class="text-3xl mb-8 text-white font-extrabold text-center">Galerie</h3>
-    <div class="w-full max-w-6xl shadow-2xl shadow-green-600/10">
-        <div class="relative overflow-hidden lg:rounded-xl">
-            <div class="flex space-x-3 animate-marquee">
-                <!-- Duplicate for marquee effect -->
-                {[images, images].flat().map(i => (
-                        <div class="flex-shrink-0 relative">
-                            <Image src={i.file} alt={i.title} class="h-64 lg:h-96 !w-auto inline-block rounded"/>
-                            <div class="absolute bottom-0 left-0 text-white font-semibold m-2 px-2 bg-neutral-900/70 rounded select-none">
+<section class="flex flex-col items-center justify-center px-4 py-12 sm:px-6">
+    <h3 class="mb-8 text-center text-3xl font-extrabold text-white">Galerie</h3>
+    <div class="mb-3 flex w-full max-w-6xl items-center justify-end gap-2">
+            <button
+                type="button"
+                data-gallery-prev
+                class="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-neutral-700 bg-neutral-800 text-white transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Image précédente"
+            >
+                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <button
+                type="button"
+                data-gallery-next
+                class="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-lg border border-neutral-700 bg-neutral-800 text-white transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label="Image suivante"
+            >
+                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+    </div>
+
+    <div class="w-full max-w-6xl rounded-2xl border border-neutral-800 bg-neutral-900/60 p-3 shadow-2xl shadow-black/20 sm:p-4">
+        <div class="relative overflow-hidden rounded-xl">
+            <div data-gallery-track class="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {images.map(i => (
+                        <div class="relative shrink-0 snap-start">
+                            <button
+                                type="button"
+                                class="group relative cursor-zoom-in"
+                                data-gallery-open
+                                aria-label={`Ouvrir l'image ${i.title} en plein écran`}
+                            >
+                                <Image src={i.file} alt={i.title} class="inline-block h-64 !w-auto rounded-lg transition duration-200 group-hover:brightness-110 lg:h-96"/>
+                            </button>
+                            <div class="absolute bottom-0 left-0 m-2 rounded bg-neutral-900/70 px-2 text-white font-semibold select-none">
                                 {i.title}
                             </div>
                         </div>
                 ))}
             </div>
         </div>
+        <div class="mt-4 flex justify-center" aria-hidden="true">
+            <div class="h-1.5 w-28 overflow-hidden rounded-full bg-white/15 sm:w-36">
+                <div data-gallery-progress-bar class="h-full w-0 rounded-full bg-white/80"></div>
+            </div>
+        </div>
     </div>
 </section>
+
+<div id="galleryDialog" class="fixed inset-0 z-20 hidden bg-black/90 px-4 py-6 sm:px-8">
+    <div class="relative flex h-full w-full items-center justify-center">
+        <button
+            type="button"
+            id="galleryDialogBackdrop"
+            class="absolute inset-0 cursor-zoom-out"
+            aria-label="Fermer l'image"
+        ></button>
+
+        <figure class="relative z-10 flex max-h-full max-w-6xl flex-col items-center gap-3">
+            <img
+                id="galleryDialogImage"
+                src=""
+                alt=""
+                class="max-h-[82vh] w-auto max-w-full rounded-xl border border-neutral-800 bg-neutral-950 object-contain"
+            />
+            <figcaption id="galleryDialogCaption" class="text-sm font-medium text-neutral-200"></figcaption>
+        </figure>
+
+        <button
+            type="button"
+            id="galleryDialogClose"
+            class="absolute right-0 top-0 m-2 inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-neutral-700 bg-neutral-900 text-white transition hover:bg-neutral-700 sm:m-4"
+            aria-label="Fermer la vue plein écran"
+        >
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
 
 <div id="configDialog" class="fixed top-0 left-0 w-screen h-screen bg-black/80 z-10 hidden">
     <div class="relative w-full h-full">
@@ -184,7 +276,7 @@ const images: { file: any; title: string }[] = shuffle([
                    src={config_image} alt="QR Code de confirguration"/>
             <a class="text-gray-500 underline"
                href="https://meshtastic.org/e/#CgMSAQESDwgBOANABUgBUBtoAcAGAQ"
-               target="_blank">
+               target="_blank" rel="noopener noreferrer">
                 Ou bien cliquez ici
             </a>
         </div>
@@ -204,26 +296,180 @@ const images: { file: any; title: string }[] = shuffle([
         background-image: url("../assets/images/background6.svg");
     }
 
-    @keyframes marquee {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(-50%);
-        }
-    }
-
-    .animate-marquee {
-        display: flex;
-        width: max-content;
-        animation: marquee 60s linear infinite;
-    }
 </style>
 
 <script>
     const configDialog = document.getElementById('configDialog');
     const configToggleBtn = document.getElementById('configToggleBtn');
     const closeDialogBtn = configDialog?.querySelector('button');
+    const galleryTrack = document.querySelector('[data-gallery-track]');
+    const galleryPrevButton = document.querySelector('[data-gallery-prev]');
+    const galleryNextButton = document.querySelector('[data-gallery-next]');
+    const galleryProgressBar = document.querySelector('[data-gallery-progress-bar]');
+    const galleryDialog = document.getElementById('galleryDialog');
+    const galleryDialogImage = document.getElementById('galleryDialogImage');
+    const galleryDialogCaption = document.getElementById('galleryDialogCaption');
+    const galleryDialogClose = document.getElementById('galleryDialogClose');
+    const galleryDialogBackdrop = document.getElementById('galleryDialogBackdrop');
+    const autoScrollIntervalMs = 5000;
+    const resumeDelayMs = 7000;
+    let autoScrollTimer: ReturnType<typeof window.setInterval> | undefined;
+    let autoScrollResumeTimer: ReturnType<typeof window.setTimeout> | undefined;
+    let progressAnimationFrame: number | undefined;
+    let progressCycleStart = 0;
+    let isAutoScrollActive = false;
+
+    const setProgress = (elapsedMs: number) => {
+        if (!galleryProgressBar || !(galleryProgressBar instanceof HTMLElement)) return;
+        const percent = Math.max(0, Math.min(100, (elapsedMs / autoScrollIntervalMs) * 100));
+        galleryProgressBar.style.width = `${percent}%`;
+    };
+
+    const resetProgress = () => {
+        progressCycleStart = performance.now();
+        setProgress(0);
+    };
+
+    const stopProgressAnimation = () => {
+        if (!progressAnimationFrame) return;
+        window.cancelAnimationFrame(progressAnimationFrame);
+        progressAnimationFrame = undefined;
+    };
+
+    const startProgressAnimation = () => {
+        stopProgressAnimation();
+        const animate = (now: number) => {
+            if (!isAutoScrollActive) return;
+            const elapsed = now - progressCycleStart;
+            setProgress(elapsed);
+            progressAnimationFrame = window.requestAnimationFrame(animate);
+        };
+        progressAnimationFrame = window.requestAnimationFrame(animate);
+    };
+
+    const restartProgressCycle = () => {
+        resetProgress();
+        if (isAutoScrollActive) {
+            startProgressAnimation();
+        }
+    };
+
+    const stopAutoScroll = () => {
+        isAutoScrollActive = false;
+        stopProgressAnimation();
+        if (!autoScrollTimer) return;
+        clearInterval(autoScrollTimer);
+        autoScrollTimer = undefined;
+    };
+
+    const startAutoScroll = () => {
+        if (!galleryTrack || !(galleryTrack instanceof HTMLElement)) return;
+        stopAutoScroll();
+        isAutoScrollActive = true;
+        restartProgressCycle();
+
+        autoScrollTimer = window.setInterval(() => {
+            const maxScrollLeft = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+            const tolerance = 2;
+
+            if (galleryTrack.scrollLeft >= maxScrollLeft - tolerance) {
+                galleryTrack.scrollTo({left: 0, behavior: 'smooth'});
+                restartProgressCycle();
+                return;
+            }
+
+            scrollGallery(1);
+            restartProgressCycle();
+        }, autoScrollIntervalMs);
+    };
+
+    const scheduleAutoScrollResume = () => {
+        if (autoScrollResumeTimer) {
+            clearTimeout(autoScrollResumeTimer);
+        }
+        autoScrollResumeTimer = window.setTimeout(() => {
+            startAutoScroll();
+        }, resumeDelayMs);
+    };
+
+    const updateGalleryButtons = () => {
+        if (!galleryTrack || !(galleryTrack instanceof HTMLElement)) return;
+        if (!(galleryPrevButton instanceof HTMLButtonElement) || !(galleryNextButton instanceof HTMLButtonElement)) return;
+
+        const maxScrollLeft = galleryTrack.scrollWidth - galleryTrack.clientWidth;
+        const tolerance = 2;
+
+        galleryPrevButton.disabled = galleryTrack.scrollLeft <= tolerance;
+        galleryNextButton.disabled = galleryTrack.scrollLeft >= maxScrollLeft - tolerance;
+    };
+
+    const scrollGallery = (direction: number) => {
+        if (!galleryTrack || !(galleryTrack instanceof HTMLElement)) return;
+        const amount = Math.round(galleryTrack.clientWidth * 0.85) * direction;
+        galleryTrack.scrollBy({left: amount, behavior: 'smooth'});
+    };
+
+    const closeGalleryDialog = () => {
+        if (!galleryDialog || !(galleryDialog instanceof HTMLElement)) return;
+        galleryDialog.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        scheduleAutoScrollResume();
+    };
+
+    const openGalleryDialog = (src: string, alt: string) => {
+        if (!galleryDialog || !galleryDialogImage || !galleryDialogCaption) return;
+        if (!(galleryDialogImage instanceof HTMLImageElement)) return;
+        if (!(galleryDialogCaption instanceof HTMLElement)) return;
+
+        stopAutoScroll();
+        galleryDialogImage.src = src;
+        galleryDialogImage.alt = alt;
+        galleryDialogCaption.textContent = alt;
+        galleryDialog.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+    };
+
+    galleryPrevButton?.addEventListener('click', () => {
+        stopAutoScroll();
+        scrollGallery(-1);
+        scheduleAutoScrollResume();
+    });
+
+    galleryNextButton?.addEventListener('click', () => {
+        stopAutoScroll();
+        scrollGallery(1);
+        scheduleAutoScrollResume();
+    });
+
+    galleryTrack?.addEventListener('mouseenter', stopAutoScroll);
+    galleryTrack?.addEventListener('mouseleave', startAutoScroll);
+    galleryTrack?.addEventListener('touchstart', stopAutoScroll, {passive: true});
+    galleryTrack?.addEventListener('touchend', scheduleAutoScrollResume, {passive: true});
+
+    galleryTrack?.addEventListener('scroll', updateGalleryButtons, {passive: true});
+    window.addEventListener('resize', updateGalleryButtons);
+
+    document.querySelectorAll('[data-gallery-open]').forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+            const image = trigger.querySelector('img');
+            if (!(image instanceof HTMLImageElement)) return;
+            openGalleryDialog(image.currentSrc || image.src, image.alt || 'Image de la galerie');
+        });
+    });
+
+    galleryDialogClose?.addEventListener('click', closeGalleryDialog);
+    galleryDialogBackdrop?.addEventListener('click', closeGalleryDialog);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAutoScroll();
+            return;
+        }
+        startAutoScroll();
+    });
+
+    updateGalleryButtons();
+    startAutoScroll();
 
     configToggleBtn?.addEventListener('click', () => {
         configDialog?.classList.remove('hidden');
@@ -231,5 +477,11 @@ const images: { file: any; title: string }[] = shuffle([
 
     closeDialogBtn?.addEventListener('click', () => {
         configDialog?.classList.add('hidden');
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeGalleryDialog();
+        }
     });
 </script>

@@ -8,22 +8,33 @@ const {frontmatter} = Astro.props;
 
 <Layout>
     <Header/>
-    <section class="flex justify-center">
-        <div class="px-8 py-4 w-full max-w-4xl bg-neutral-900 sm:rounded-xl">
-            <div class="w-full border-b border-main mb-16">
-                <div>
-                    <h1 class="text-xl md:text-3xl font-bold text-white">{frontmatter.title}</h1>
-                    <h2 class="text-md md:text-lg text-gray-400">{frontmatter.subtitle}</h2>
+    <section class="relative flex justify-center px-4 pb-12 sm:px-6 sm:pb-16">
+        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40 bg-gradient-to-b from-neutral-900/30 to-transparent"></div>
+        <div class="w-full max-w-6xl overflow-hidden rounded-3xl border border-neutral-800 bg-neutral-900/70 px-6 py-8 shadow-2xl shadow-black/20 backdrop-blur-sm sm:px-10 sm:py-10">
+            <div class="w-full border-b border-neutral-800 pb-10">
+                <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
+                    <i class="fas fa-file-lines" aria-hidden="true"></i>
+                    Documentation
                 </div>
-                <hr class="text-gray-500 my-4 mx-8">
-                <div class="text-white w-full max-w-full prose
-                prose-h2:text-lg prose-h2:lg:text-xl prose-h2:text-white prose-h2:mb-0
-                prose-h3:text-md prose-h3:lg:text-lg prose-h3:text-white prose-h3:mb-0
-                prose-a:text-green-400 prose-a:decoration-dashed prose-a:hover:text-green-300 prose-a:transition
-                prose-strong:font-semibold prose-strong:text-gray-100
-                prose-em:bg-orange-400/20 prose-em:border prose-em:border-orange-400 prose-em:rounded prose-em:p-2 prose-em:inline-block
-                prose-p:text-justify
-                prose-code:text-green-100 prose-code:bg-neutral-800 prose-code:px-2 prose-code:py-1 prose-code:rounded-lg prose-code:border prose-code:border-neutral-700 prose-code:before:hidden prose-code:after:hidden
+
+                <div>
+                    <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-white">{frontmatter.title}</h1>
+                    <h2 class="mt-2 text-base md:text-lg text-neutral-400">{frontmatter.subtitle}</h2>
+                </div>
+
+                <div class="mt-8 text-white w-full max-w-full prose prose-invert prose-neutral
+                prose-headings:tracking-tight prose-headings:font-bold
+                prose-h2:text-2xl prose-h2:text-white prose-h2:mb-2 prose-h2:mt-10
+                prose-h3:text-xl prose-h3:text-white prose-h3:mb-2 prose-h3:mt-8
+                prose-p:text-neutral-200 prose-p:leading-relaxed prose-p:text-justify
+                prose-li:text-neutral-200 prose-li:marker:text-emerald-400
+                prose-a:text-emerald-300 prose-a:underline prose-a:decoration-dashed prose-a:underline-offset-4 prose-a:hover:text-emerald-200 prose-a:transition
+                prose-strong:font-semibold prose-strong:text-neutral-100
+                prose-em:bg-orange-400/15 prose-em:border prose-em:border-orange-400/40 prose-em:rounded prose-em:px-2 prose-em:py-1 prose-em:inline-block prose-em:text-orange-200 prose-em:not-italic
+                prose-blockquote:border-l-emerald-500/70 prose-blockquote:text-neutral-300
+                prose-code:text-emerald-100 prose-code:bg-neutral-800 prose-code:px-2 prose-code:py-1 prose-code:rounded-lg prose-code:border prose-code:border-neutral-700 prose-code:before:hidden prose-code:after:hidden
+                prose-pre:bg-neutral-950 prose-pre:border prose-pre:border-neutral-800 prose-pre:rounded-xl
+                prose-hr:border-neutral-800
                 ">
                     <slot/>
                 </div>

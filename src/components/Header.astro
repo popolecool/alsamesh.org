@@ -1,10 +1,8 @@
 ---
 import mesh_short_logo from "../assets/images/meshtastic_short_logo.svg?raw"
 
-// Define the discord invite link here
 const discordLink = "https://discord.gg/aRYWN5HwFU";
 
-// Define what items you want in the top menu bar
 const menuItems = [
     {title: "Accueil", icon: "far fa-house", link: "/"},
     {title: "Rejoindre", icon: "fas fa-arrow-right-to-bracket", link: "/join"},
@@ -12,51 +10,158 @@ const menuItems = [
     {title: "Carte", icon: "fas fa-map", link: "/carte"},
     {title: "Discord", icon: "fab fa-discord", link: discordLink, target: "_blank"}
 ];
-const currentRouteIndex = menuItems.findIndex(i => i.link === Astro.url.pathname);
+
+const normalizePath = (path: string) => {
+    if (path.length > 1 && path.endsWith('/')) {
+        return path.slice(0, -1);
+    }
+    return path;
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+
+const isItemActive = (link: string) => {
+    if (link.startsWith("http")) {
+        return false;
+    }
+    return normalizePath(link) === currentPath;
+};
 ---
 
-<header class="flex items-center justify-center mt-4 mb-8 select-none">
+<header class="mt-4 mb-8 px-3 sm:px-4 select-none">
+    <div class="mx-auto w-full max-w-6xl rounded-2xl bg-neutral-800/95 text-white shadow-lg shadow-black/25">
+        <div class="flex items-center justify-between px-4 py-3 sm:px-6">
+            <a href={menuItems[0].link} class="flex items-center gap-3">
+                <div class="w-9 sm:w-10">
+                    <Fragment set:html={mesh_short_logo}/>
+                </div>
+                <span class="text-xl sm:text-2xl font-semibold tracking-tight">AlsaMesh</span>
+            </a>
 
-    <div class="grid grid-cols-4 md:flex items-center gap-8 bg-neutral-800 py-2 px-6 rounded-lg md:rounded-full dark:text-white">
+            <button
+                type="button"
+                id="main-menu-button"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-700 bg-neutral-900 text-white transition-all duration-200 hover:bg-neutral-700 md:hidden"
+                aria-controls="main-menu"
+                aria-expanded="false"
+                aria-label="Ouvrir le menu"
+            >
+                <i id="main-menu-icon" class="fas fa-bars transition-transform duration-200" aria-hidden="true"></i>
+            </button>
 
-        <a href={menuItems[0].link} class="flex gap-2 items-center cursor-pointer col-span-3">
-            <div class="w-10">
-                <Fragment set:html={mesh_short_logo}/>
-            </div>
-            <span class="text-2xl">AlsaMesh</span>
-        </a>
+            <nav aria-label="Navigation principale" class="hidden md:block">
+                <ul class="flex items-center gap-2">
+                    {menuItems.map((item) => (
+                        <li>
+                            <a
+                                href={item.link}
+                                target={item.target}
+                                rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                                class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200 hover:bg-neutral-900 hover:-translate-y-0.5"
+                                class:list={{"bg-neutral-900/60": isItemActive(item.link)}}
+                                aria-current={isItemActive(item.link) ? "page" : undefined}
+                            >
+                                <i class={item.icon} aria-hidden="true"></i>
+                                <span>{item.title}</span>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </div>
 
-        <button class="md:hidden cursor-pointer" data-toggle-menu-btn>
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <ul id="menu"
-            role="menu"
-            data-popover="menu"
-            data-popover-placement="bottom"
-            class="flex max-md:flex-col items-center gap-4 max-md:col-span-4 max-md:hidden transition-all col-span-4 w-full">
-            {menuItems.map((item, index) => (
-                    <li role="menuitem"
-                        class="cursor-pointer p-2 hover:bg-neutral-900 rounded-xl transition-all"
-                        class:list={{'bg-neutral-900/50': currentRouteIndex === index}}>
-                        <a href={item.link} target={item.target}>
-                            <i class={item.icon}></i>
-                            {item.title}
+        <nav id="main-menu" aria-label="Navigation mobile" class="hidden overflow-hidden border-t border-neutral-700 px-4 py-3 md:hidden sm:px-6 transition-all duration-300 ease-out opacity-0 -translate-y-2 max-h-0">
+            <ul class="flex flex-col gap-2">
+                {menuItems.map((item) => (
+                    <li>
+                        <a
+                            href={item.link}
+                            target={item.target}
+                            rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                            class="inline-flex w-full items-center gap-2 rounded-xl px-3 py-2 text-base font-medium transition-all duration-200 hover:bg-neutral-900 hover:translate-x-1"
+                            class:list={{"bg-neutral-900/60": isItemActive(item.link)}}
+                            aria-current={isItemActive(item.link) ? "page" : undefined}
+                        >
+                            <i class={item.icon} aria-hidden="true"></i>
+                            <span>{item.title}</span>
                         </a>
                     </li>
-            ))}
-        </ul>
-
+                ))}
+            </ul>
+        </nav>
     </div>
-
 </header>
 
 <script>
-    const toggleButton = document.querySelector('[data-toggle-menu-btn]');
-    const menu = document.querySelector('#menu');
+    const toggleButton = document.getElementById('main-menu-button');
+    const toggleIcon = document.getElementById('main-menu-icon');
+    const menu = document.getElementById('main-menu');
+    const openClasses = ['opacity-100', 'translate-y-0', 'max-h-96'];
+    const closedClasses = ['opacity-0', '-translate-y-2', 'max-h-0'];
+
+    const setButtonState = (expanded: boolean) => {
+        if (!toggleButton) return;
+        toggleButton.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        toggleButton.setAttribute('aria-label', expanded ? 'Fermer le menu' : 'Ouvrir le menu');
+        toggleIcon?.classList.toggle('rotate-90', expanded);
+    };
+
+    const closeMenu = (instant = false) => {
+        if (!menu) return;
+
+        setButtonState(false);
+
+        if (instant) {
+            menu.classList.remove(...openClasses);
+            menu.classList.add(...closedClasses);
+            menu.classList.add('hidden');
+            return;
+        }
+
+        menu.classList.remove(...openClasses);
+        menu.classList.add(...closedClasses);
+
+        menu.addEventListener('transitionend', (event) => {
+            if (event.target !== menu) return;
+            if (toggleButton?.getAttribute('aria-expanded') === 'false') {
+                menu.classList.add('hidden');
+            }
+        }, {once: true});
+    };
+
+    const openMenu = () => {
+        if (!menu) return;
+        menu.classList.remove('hidden');
+        requestAnimationFrame(() => {
+            menu.classList.remove(...closedClasses);
+            menu.classList.add(...openClasses);
+        });
+        setButtonState(true);
+    };
 
     toggleButton?.addEventListener('click', () => {
-        if(!menu) return;
-        menu.classList.toggle('max-md:hidden');
+        if (!menu || !toggleButton) return;
+        const expanded = toggleButton.getAttribute('aria-expanded') === 'true';
+        if (expanded) {
+            closeMenu();
+            return;
+        }
+        openMenu();
+    });
+
+    menu?.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => closeMenu());
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) {
+            closeMenu(true);
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeMenu();
+        }
     });
 </script>
