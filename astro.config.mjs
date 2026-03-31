@@ -5,9 +5,12 @@ import tailwindcss from '@tailwindcss/vite';
 
 import node from '@astrojs/node';
 import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://alsamesh.org',
+
   vite: {
     plugins: [tailwindcss()]
   },
@@ -16,5 +19,5 @@ export default defineConfig({
     mode: 'standalone'
   }),
 
-  integrations: [mdx()]
+  integrations: [mdx(), sitemap()]
 });
