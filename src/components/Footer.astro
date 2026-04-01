@@ -1,11 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import powered from '../assets/images/powered.webp'
+import { SITE_CONFIG } from '../config/site';
 ---
 <footer class="w-full h-[180px] bg-main flex justify-center items-center text-white font-main text-lg">
     <ul class="text-center max-sm:my-8">
         <li class="mb-8 underline decoration-dashed underline-offset-4">
-            <a href="https://discord.gg/aRYWN5HwFU" target="_blank">Notre Discord</a>
+            <a href={SITE_CONFIG.discordLink} target="_blank">Notre Discord</a>
         </li>
         <li>
             <a href="https://meshtastic.org/" target="_blank">

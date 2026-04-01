@@ -2,12 +2,13 @@
 import Header from '../components/Header.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from "../components/Footer.astro"
+import { SITE_CONFIG } from '../config/site';
 
 const {frontmatter} = Astro.props;
 
 // SEO optimisé basé sur le frontmatter
-const pageTitle = `${frontmatter.title} - AlsaMesh`;
-const pageDescription = frontmatter.description || frontmatter.subtitle || "Documentation AlsaMesh - Réseau mesh Meshtastic en Alsace";
+const pageTitle = `${frontmatter.title} - ${SITE_CONFIG.ogSiteName}`;
+const pageDescription = frontmatter.description || frontmatter.subtitle || `Documentation ${SITE_CONFIG.ogSiteName} - Réseau mesh Meshtastic en Alsace`;
 ---
 
 <Layout

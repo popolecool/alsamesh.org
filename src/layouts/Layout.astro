@@ -1,6 +1,7 @@
 ---
 import '../assets/styles/global.css'
 import cell_tower from "../assets/images/cell_tower.webp"
+import { SITE_CONFIG } from '../config/site'
 
 interface Props {
 	title?: string;
@@ -11,9 +12,9 @@ interface Props {
 }
 
 const {
-	title = "AlsaMesh - Réseau Mesh Meshtastic en Alsace",
-	description = "Découvrez AlsaMesh, le réseau mesh Meshtastic communautaire d'Alsace. Communication LoRa longue portée, libre et résiliente sur 868MHz. Rejoignez-nous !",
-	keywords = "meshtastic, mesh, alsace, lora, 868mhz, réseau, communication, open-source, communauté",
+	title = SITE_CONFIG.title,
+	description = SITE_CONFIG.description,
+	keywords = SITE_CONFIG.keywords,
 	ogImage = cell_tower.src,
 	canonicalUrl = Astro.url.href,
 } = Astro.props;
@@ -39,8 +40,8 @@ const {
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImage} />
 		<meta property="og:url" content={canonicalUrl} />
-		<meta property="og:site_name" content="AlsaMesh" />
-		<meta property="og:locale" content="fr_FR" />
+		<meta property="og:site_name" content={SITE_CONFIG.ogSiteName} />
+		<meta property="og:locale" content={SITE_CONFIG.locale} />
 
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
@@ -50,8 +51,8 @@ const {
 
 		<!-- Additional SEO -->
 		<meta name="robots" content="index, follow" />
-		<meta name="author" content="AlsaMesh Community" />
-		<meta name="theme-color" content="#10b981" />
+		<meta name="author" content={SITE_CONFIG.author} />
+		<meta name="theme-color" content={SITE_CONFIG.themeColor} />
 	</head>
 	<body class="bg-neutral-950">
 		<slot />
