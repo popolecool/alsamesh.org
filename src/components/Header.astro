@@ -1,7 +1,8 @@
 ---
 import mesh_short_logo from "../assets/images/meshtastic_short_logo.svg?raw"
+import { SITE_CONFIG } from '../config/site';
 
-const discordLink = "https://discord.gg/aRYWN5HwFU";
+const discordLink = SITE_CONFIG.discordLink;
 
 const menuItems = [
     {title: "Accueil", icon: "far fa-house", link: "/"},
@@ -35,7 +36,7 @@ const isItemActive = (link: string) => {
                 <div class="w-9 sm:w-10">
                     <Fragment set:html={mesh_short_logo}/>
                 </div>
-                <span class="text-xl sm:text-2xl font-semibold tracking-tight">AlsaMesh</span>
+                <span class="text-xl sm:text-2xl font-semibold tracking-tight">{SITE_CONFIG.ogSiteName}</span>
             </a>
 
             <button

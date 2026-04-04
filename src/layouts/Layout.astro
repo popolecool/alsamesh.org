@@ -1,6 +1,23 @@
 ---
 import '../assets/styles/global.css'
 import cell_tower from "../assets/images/cell_tower.webp"
+import { SITE_CONFIG } from '../config/site'
+
+interface Props {
+	title?: string;
+	description?: string;
+	keywords?: string;
+	ogImage?: string;
+	canonicalUrl?: string;
+}
+
+const {
+	title = SITE_CONFIG.title,
+	description = SITE_CONFIG.description,
+	keywords = SITE_CONFIG.keywords,
+	ogImage = cell_tower.src,
+	canonicalUrl = Astro.url.href,
+} = Astro.props;
 ---
 <!doctype html>
 <html lang="fr" class="dark">
@@ -9,7 +26,33 @@ import cell_tower from "../assets/images/cell_tower.webp"
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href={cell_tower.src} />
 		<meta name="generator" content={Astro.generator} />
-		<title>AlsaMesh</title>
+
+		<!-- SEO Essentials -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<link rel="canonical" href={canonicalUrl} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- Open Graph (Facebook, LinkedIn) -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:site_name" content={SITE_CONFIG.ogSiteName} />
+		<meta property="og:locale" content={SITE_CONFIG.locale} />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+
+		<!-- Additional SEO -->
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content={SITE_CONFIG.author} />
+		<meta name="theme-color" content={SITE_CONFIG.themeColor} />
 	</head>
 	<body class="bg-neutral-950">
 		<slot />
